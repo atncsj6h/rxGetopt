@@ -8,12 +8,12 @@ endif
 LIBP = lib
 LIB1 = rxgetopt
 
-REXX_CFLAGS := $(shell ooRexx-config  --cflags)
+REXX_CFLAGS := $(shell oorexx-config  --cflags)
 
 OTHR_CFLAGS  = -fPIC
 
-REXX_LFLAGS := $(shell ooRexx-config --libs)
-REXX_RPATH  := $(shell ooRexx-config --rpath)
+REXX_LFLAGS := $(shell oorexx-config --libs)
+REXX_RPATH  := $(shell oorexx-config --rpath)
 
 OTHR_LFLAGS :=
 

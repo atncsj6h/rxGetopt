@@ -22,8 +22,8 @@
 * * *
 
 ##  Repository
-*   `https://github.com/atncsj6h/rxgetopt.git
-*   `git@github.com:atncsj6h/rxgetopt.git
+*   `https://github.com/atncsj6h/rxgetopt.git`
+*   `git@github.com:atncsj6h/rxgetopt.git`
 * * *
 
 ##  prerequisites
