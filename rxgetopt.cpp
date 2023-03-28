@@ -5,22 +5,22 @@
   http://www.boost.org/LICENSE_1_0.txt)
 */
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #include <getopt.h>
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #include "oorexxapi.h"
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#include "xmalloc.h"
 #include "xstringops.h"
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -36,7 +36,6 @@
   to be investigated
 */
 #define NON_OPT 1
-
 
 /* Allow changing which getopt is in use with function pointer */
 int (*getopt_long_fp) (int , char * const * , const char * ,
@@ -64,25 +63,6 @@ static void getopt_options( const char * options ) {
     getopt_caseless = 1;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
-static void *xmalloc(const size_t size) {
-  void *ret = malloc(size);
-  if (!ret && size)
-    fprintf(stderr, "%s: error: cannot allocate %zu bytes", "rxgetopt", size);
-  return ret ;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
-static void *xrealloc(void *ptr, const size_t size)
-{
-  void *ret = realloc(ptr, size);
-  if (!ret && size)
-    fprintf(stderr, "%s: error: cannot allocate %zu bytes", "rxgetopt", size);
-  return ret;
-}
-
 #define LONG_OPTIONS_SPARES 16
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   initialize long options.
@@ -103,7 +83,6 @@ static void init_longOptions()
 	long_options[long_options_used].val = 0;
 
   long_options_used++;
-
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Add a long option.

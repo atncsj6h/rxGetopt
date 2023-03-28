@@ -16,6 +16,10 @@ if( CMAKE_VERSION VERSION_LESS  3.20 )
 endif()
 cmake_minimum_required( VERSION ${CMAKE_VERSION} )
 
+set( CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} )
+list( APPEND CMAKE_MODULE_PATH "$ENV{CMTK}/cmake/Modules" )
+include( vDump )
+
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # must come before the project command
 # lowest macOS supported 10.13.6 High Sierra
@@ -25,7 +29,6 @@ if( APPLE AND BUILD_UNIVERSAL_BINARIES )
 endif()
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#
 set( VERSION 1.0.0 )
 
 project( rxgetopt
@@ -34,26 +37,27 @@ project( rxgetopt
 set( VERSION_STRING "${VERSION}" )
 set( VERSION_STRING "${VERSION_STRING}-${CMAKE_SYSTEM_PROCESSOR}" )
 
-#[[ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#]]
+message( "++ CMAKE_MODULE_PATH  '${CMAKE_MODULE_PATH}' " )
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 find_program( oorexx_EXECUTABLE rexx )
 
 if( NOT oorexx_EXECUTABLE )
   message( FATAL_ERROR "
- unable to continue - ooRexx not available " )
+ unable to continue - oorexx not available " )
 endif()
 
 get_filename_component(oorexx_PREFIX  "${oorexx_EXECUTABLE}" DIRECTORY )
 get_filename_component(oorexx_PREFIX  "${oorexx_PREFIX}" DIRECTORY )
 set( oorexx_INCLUDEDIR "${oorexx_PREFIX}/include" )
 set( oorexx_LIBDIR     "${oorexx_PREFIX}/lib" )
-set( ooRexx_LIBRARIES  "rexx;rexxapi" )
+set( oorexx_LIBRARIES  "rexx;rexxapi" )
 
 message( "++ oorexx_EXECUTABLE  '${oorexx_EXECUTABLE}' " )
 message( "++ oorexx_PREFIX      '${oorexx_PREFIX}' " )
 message( "++ oorexx_INCLUDEDIR  '${oorexx_INCLUDEDIR}' " )
-message( "++ oorexx_LIBDIR      '${oorexx_INCLUDEDIR}' " )
-message( "++ ooRexx_LIBRARIES   '${ooRexx_LIBRARIES}' " )
+message( "++ oorexx_LIBDIR      '${oorexx_LIBDIR}' " )
+message( "++ oorexx_LIBRARIES   '${oorexx_LIBRARIES}' " )
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 set( CMAKE_C_STANDARD 11 )
@@ -114,3 +118,7 @@ endif()
 target_link_libraries( rxgetopt
   ${oorexx_LIBRARIES}
 )
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+vdump( "main" "exit" )
