@@ -16,6 +16,15 @@ if( CMAKE_VERSION VERSION_LESS  3.25 )
 endif()
 cmake_minimum_required( VERSION ${CMAKE_VERSION} )
 
+# cmake Modules to help debug
+list( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
+include( vSnap )
+include( vDump )
+if( CMDEBUG )
+  set( VSNAP ON )
+  set( VDUMP ON )
+endif()
+
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 project( rxgetopt
   LANGUAGES C CXX )
@@ -89,3 +98,9 @@ endif()
 target_link_libraries( rxgetopt
   ${oorexx_LIBRARIES}
 )
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# dump all the cmake variables
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+vdump( "main" "exit" )
+
