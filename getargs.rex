@@ -35,8 +35,13 @@ say
 
 --  for the long options the casing is RELEVANT
 --  will try provide later a caseless options scan
-optsLong = "mach:,rot1:,rot2:,rot3:,refl:,plgs:,flag,optval::"
-args = argpars("alternate", optsLong, .syscargs)
+optsLong = "mach:,rot1:,rot2:,rot3:,refl:,plgs:,flag"
+args = getargs("alternate", optsLong, .syscargs)
+
+say "the processed args"
+do i = 1 to args~dimension(1)
+  say i args[i]
+end
 
 say "keyword options/arguments - number of entries ("have_keywargs") "
 say

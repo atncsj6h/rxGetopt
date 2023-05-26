@@ -66,12 +66,12 @@
 *   args = getopts(behaviour options, short options, long options, .syscargs )
 *   see the getopts.rex scripts
 *
-*   CALL FORMAT FOR ARGPARS - ONLY LONG OPTIONS HANDLED
+*   CALL FORMAT FOR GETARGS - ONLY LONG OPTIONS HANDLED
 *
-*   args = argpars( behaviour options, long options, .syscargs )
-*   see the argpars.rex scripts
+*   args = getargs( behaviour options, long options, .syscargs )
+*   see the getargs.rex scripts
 *
-*   argpars will create and intialize a set of variables of the pattern
+*   getargs will create and intialize a set of variables of the pattern
 *
 *   options with arguments ( keyword/value pairs )
 *   have_longOptionName = 0/1
@@ -81,17 +81,13 @@
 *   longOptionName = 0/1
 *
 *   the returned options/args array will be filled with the positional options
-*   see the sample argpars.rex script
+*   see the sample getargs.rex script
 *
 *   the testing can be done in the build directory without installing
 *
 * * *
 
 ##  Additional considerations/warnings
-*   the system `getopt_long` ( all systems, not just OSX )
-*   does not deal well ( at all ) with options with optional arguments
-*   so beware about using options with the "::" indicator
-*   a workaround is to use the form --option=argument instead of --option argument
 * * *
 
 ##  tested and working on

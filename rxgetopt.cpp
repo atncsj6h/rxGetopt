@@ -427,7 +427,7 @@ RexxRoutineEntry rxgetopt_functions[] =
 
 //  short names
   REXX_TYPED_ROUTINE( getopts,      rxgetopts ),
-  REXX_TYPED_ROUTINE( argpars,      rxargpars ),
+  REXX_TYPED_ROUTINE( getargs,      rxargpars ),
 
   REXX_LAST_ROUTINE()
 };

@@ -36,7 +36,7 @@ $(LIBP)$(LIB1).$(EXT): $(LIB1).o
 	$(CXX) $(LIB1).o $(REXX_LFLAGS) $(OTHR_LFLAGS) -o $(LIBP)$(LIB1).$(EXT)
 
 install:
-	cp $(LIBP)$(LIB1).$(EXT) $(PREFIX)/lib/
+	cp $(LIBP)$(LIB1).$(EXT) $(PREFIX)/lib
 
 clean:
 	rm -f *.o  *.so *.dylib

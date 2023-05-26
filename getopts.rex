@@ -84,6 +84,8 @@ do args~dimension(1)
 
   otherwise do
     say "option provided, but not handled >>"args[1]"<<"
+    args~delete(1)
+    iterate
     signal logic_error
   end
 
